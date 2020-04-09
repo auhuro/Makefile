@@ -1,0 +1,65 @@
+program_LIBRARY_INCLUDE :=  # library include folder
+program_LIBRARY_DIR :=      # library binary folder
+program_LIBRARY :=          # library flag
+program_LIBRARY_FRAMEWORK :=# macOS framework
+
+program_SRC :=
+program_INCLUDE := 
+
+program_SRC_recursive :=
+program_INCLUDE_recursive :=
+
+program_SRC_INCLUDE :=            # program_SRC + program_INCLUDE
+program_SRC_INCLUDE_recursive :=  # program_SRC + program_INCLUDE
+
+program_DEFINES := # flags
+program_PCH :=     # for xcode mainly
+
+program_LIB_SRC_SRC:= # ../../../dbone.L # add .L to real path
+program_LIB_DST_SRC:= #../../src/   # path where TO STORE libraries with includes locally. 
+
+# ** program_LIBRARY_INCLUDE +=
+# ** program_LIBRARY_DIR +=
+# ** program_LIBRARY +=
+# ** program_SRC_INCLUDE += 
+# ** program_LIBRARY_FRAMEWORK +=
+# ** program_SRC_INCLUDE_recursive += 
+# ** program_INCLUDE +=
+# ** program_SRC +=
+# ** program_INCLUDE_recursive +=
+# ** program_SRCS_recursive +=
+# * program_DEFINES += 
+# * program_PCH += -include main.h
+# LDFLAGS := -Bstatic
+#
+# ifeq ($(program_PLATFORM),OSX)
+# program_LIBRARY_FRAMEWORK +=Cocoa
+# program_LIBRARY_FRAMEWORK +=OpenGL
+# program_LIBRARY_FRAMEWORK +=GLUT
+# program_LIBRARY_FRAMEWORK +=IOKit
+# program_LIBRARY_FRAMEWORK +=ImageIO
+# endif
+#
+# program_DEFINES += DEBUG DEBUG_DB
+# program_DEFINES += DEBUG_DB 
+# program_DEFINES += DEBUG_DBSQLiteBase_ERRORS
+#
+# program_SRC +=/usr/X11/include/GL/
+# program_SRC +=/usr/X11/include/
+# program_LIBRARY_DIR +=/usr/X11/lib/
+# program_LIBRARY_DIR +=/usr/X11R6/lib/
+# program_LIBRARY_DIR +=~/bin/libwebp/lib/
+# program_LIBRARY +=z
+# program_LIBRARY +=png
+# program_LIBRARY +=GL
+# program_LIBRARY +=GLU
+# program_LIBRARY +=glut
+# program_LIBRARY +=webp
+# program_LIBRARY +=sqlite3
+#
+# CFLAGS +=
+# CPPFLAGS += # -Wno-deprecated-declarations
+# CPPFLAGS += # -Werror
+# CPPFLAGS += # -mmacosx-version-min=10.6
+# CPPFLAGS += # -Werror
+# CPPFLAGS += # -mmacosx-version-min=10.6

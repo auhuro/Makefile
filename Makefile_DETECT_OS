@@ -1,0 +1,27 @@
+ifeq ($(OS),Windows_NT)
+    program_PLATFORM := WIN32
+    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+        program_ACHITECTURE := AMD64
+    endif
+    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+        program_ACHITECTURE := IA32
+    endif
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        program_PLATFORM := LINUX
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        program_PLATFORM := OSX
+    endif
+    UNAME_P := $(shell uname -p)
+    ifeq ($(UNAME_P),x86_64)
+        program_ACHITECTURE := AMD64
+    endif
+    ifneq ($(filter %86,$(UNAME_P)),)
+        program_ACHITECTURE := IA32
+    endif
+    ifneq ($(filter arm%,$(UNAME_P)),)
+        program_ACHITECTURE := ARM
+    endif
+endif

@@ -1,0 +1,33 @@
+%.L:
+	$(eval PATH_REAL:=$(basename $@))
+	$(eval PATH_REAL_NAME:=$(notdir $(PATH_REAL)))
+	@echo installing $(PATH_REAL_NAME): from $(PATH_REAL)
+	mkdir -p $(program_LIB_DST_SRC)/third_party_libs/$(PATH_REAL_NAME)/include/
+	mkdir -p $(program_LIB_DST_SRC)/third_party_libs/$(PATH_REAL_NAME)/lib/
+	cp    $(PATH_REAL)/lib/lib$(PATH_REAL_NAME).a $(program_LIB_DST_SRC)/third_party_libs/$(PATH_REAL_NAME)/lib/
+	cp -r $(PATH_REAL)/include/*                  $(program_LIB_DST_SRC)/third_party_libs/$(PATH_REAL_NAME)/include/
+
+lib_all: $(program_LIB_SRC_SRC)
+
+ifneq ($(program_LIB_DST_SRC),)
+lib_clean: lib_clean_check
+	rm -rf $(program_LIB_DST_SRC)/third_party_libs/*
+endif
+
+lib_clean_check:
+	@echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} = y ]
+
+%.lib_build:
+	@echo "executing *lib_build $@"
+	$(eval PATH_REAL:=$(basename $@))
+	- $(MAKE) -C $(PATH_REAL)/build clean
+	- $(MAKE) -C $(PATH_REAL)/build all
+
+lib_build_all: $(program_LIB_SRC_SRC:.L=.lib_build)
+	$(eval aa:=$(program_LIB_SRC_SRC:.L=.lib_build))
+	@echo ":: $(aa)"
+	@echo "executing buildlibs finished"
+
+allall: cleanall lib_build_all lib_all all
+
+cleanall: lib_clean clean
